@@ -49,6 +49,7 @@ public class SelenideTest extends TestBase {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
         TestSteps testSteps = new TestSteps();
+
         testSteps.openPage();
         testSteps.repoNameInput(myRepo);
         testSteps.openRepo(myRepo);
