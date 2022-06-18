@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selectors.withText;
@@ -11,7 +12,7 @@ import static org.openqa.selenium.By.linkText;
 
 public class SelenideTest extends TestBase {
 
-    private final String myRepo = "maverik2047/zip_file_tests";
+    private final String myRepo = "Maverik2047/zip_file_tests";
 
     @Test
     void testMyGitHubSearch() {
@@ -39,6 +40,21 @@ public class SelenideTest extends TestBase {
         step("Проверяем что не существует файл myArray.html", () -> {
             $(withText("myArray.html")).shouldNot(Condition.exist);
         });
+
+    }
+
+    @DisplayName("Annotated test with steps")
+    @Test
+    void testAnnotatedSteps() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+
+        TestSteps testSteps = new TestSteps();
+        testSteps.openPage();
+        testSteps.repoNameInput(myRepo);
+        testSteps.openRepo(myRepo);
+        testSteps.openRepoData();
+        testSteps.checkFileParseTest();
+        testSteps.checkMyArrayFileNotExists();
 
 
     }
