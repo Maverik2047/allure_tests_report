@@ -53,9 +53,10 @@ public class SelenideTest extends TestBase {
         testSteps.repoNameInput(myRepo);
         testSteps.openRepo(myRepo);
         testSteps.openRepoData();
-        testSteps.checkFileParseTest();
-        testSteps.checkMyArrayFileNotExists();
+        testSteps.checkFileParseTest("FileParseTest.java");
+        testSteps.checkMyArrayFileNotExists("myArray.html");
 
 
     }
+
 }

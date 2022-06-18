@@ -22,11 +22,11 @@ public class TestSteps {
         $("[title=java]").click();
     }
 
-    public void checkFileParseTest() {
-        $(".repository-content").shouldHave(Condition.text("FileParseTest.java"));
+    public void checkFileParseTest(String value) {
+        $(".repository-content").shouldHave(Condition.text(value));
     }
 
-    public void checkMyArrayFileNotExists() {
-        $(withText("myArray.html")).shouldNot(Condition.exist);
+    public void checkMyArrayFileNotExists(String value) {
+        $(withText(value)).shouldNot(Condition.exist);
     }
 }
