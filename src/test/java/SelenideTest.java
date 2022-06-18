@@ -1,3 +1,50 @@
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.Test;
+
+import static com.codeborne.selenide.Selectors.withText;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+import static io.qameta.allure.Allure.step;
+import static org.openqa.selenium.By.linkText;
+
 public class SelenideTest {
-    voi dff
+
+    private final String myRepo = "maverik2047/zip_file_tests";
+
+    @Test
+    void testMyGitHubSearch() {
+
+        SelenideLogger.addListener("allure", new AllureSelenide());
+        Configuration.baseUrl = "https://github.com/";
+        Configuration.browserSize = "3840x2160";
+        Configuration.holdBrowserOpen = true;
+
+        step("Открываем главную страницу", () -> {
+            open("https://github.com");
+        });
+        step("Вводим в поиск название репозитория", () -> {
+            $(".form-control").sendKeys(myRepo);
+            $(".form-control").submit();
+        });
+        step("Заходим в найденный репозиторий", () -> {
+
+            $(linkText("Maverik2047/zip_file_tests")).click();
+        });
+        step("Переходим в содержимое найденного репозитория", () -> {
+            $(linkText("src/test")).click();
+            $("[title=java]").click();
+        });
+        step("Проверяем что существует файл FileParseTest.java",()->{
+            $(".repository-content").shouldHave(Condition.text("FileParseTest.java"));
+        });
+       step("Проверяем что не существует файл myArray.html",()->{
+           $(withText("myArray.html")).shouldNot(Condition.exist);
+       } );
+
+
+
+    }
 }
