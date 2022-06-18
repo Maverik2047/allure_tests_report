@@ -20,7 +20,7 @@ public class TestSteps {
     }
 
     @Step("Заходим в найденный репозиторий")
-    public void openRepo(String value) {
+    public void openMyRepo(String value) {
         $(linkText(value)).click();
     }
 
