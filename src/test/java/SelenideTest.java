@@ -56,7 +56,7 @@ public class SelenideTest extends TestBase {
         testSteps.openRepoData();
         testSteps.checkFileParseTest("FileParseTest.java");
         testSteps.checkMyArrayFileNotExists("myArray.html");
-
+        testSteps.takeScreenshot();
 
     }
 
